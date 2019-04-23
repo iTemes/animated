@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Анимация при прокрутке страницы smartlanding.biz</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" media="all" href="fonts/style.css">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<header class="page-header">
+		<div class="page__top">
+			<div class="hamburger-menu">
+				<span class="hamburger"></span>
+			</div>
+		</div>
+		<nav class="main-nav">
+				
+		</nav>
+	</header>
+	<main class="page">
+		<section class=" page__full">
+			<h1 class="page__title page__title--hero fade">Temes Improved</h1>
+				<span class="arrow fade"></span>
+		</section>
+		<section class="photo no-fade">
+			<h2 class="photo__title">Portfolio</h2>
+			<div class="circle translateY">
+				<img src="images/1.png" alt="1" style="transform: translate(0px, 320px);">
+			</div>
+		</section>
+		<section class="skills">
+			<h2 class="skills__title">My</h2>
+			<div class="skills__item skills__item--html">
+				<span class="icon icon-html-five"></span>
+				<span class="skills__bar "></span>
+			</div>
+			<div class="skills__item skills__item--css3">
+				<span class="icon icon-css3"></span>
+				<span class="skills__bar "></span>
+			</div>
+			<div class="skills__item skills__item--js">
+				<span class="icon icon-javascript"></span>
+				<span class="skills__bar "></span>
+			</div>
+			<div class="skills__additional">
+				<span class="icon icon-git"></span>
+				<span class="icon icon-sass"></span>
+				<span class="icon icon-gulp"></span>
+				<span class="icon icon-query"></span>
+			</div>	
+		</section>
+		<section class="projects"></section>
+	</main>
+	<footer>
+
+	</footer>
+	<script>
+		var fade = $(".fade");
+		var translate = $('.translateY');
+		var fixed = $('.fixed');
+		var page = $('.page');
+		var  page__full = $('.page__full');
+		var skills = $('.skills');
+		//Высота окна браузера при прокрутке
+		var windowHeight = $(window).height();
+		//Высота всего документа
+		var documentHeight = $(document).height();
+		// var offsetY = 400;
+		var CircleTransition = 1;
+		var transtion = 300;
+		var transitionCoef = 1.3;
+
+		//Функция добавления css правила элементу
+		var addCss = function(element,css,value) {
+			element.css(css, value);
+		}
+		// Функция проверки есть ли элемент на странице
+		var isOnScreen = function (element) {
+			var windowOffset = $(window).scrollTop();
+			var elementOffset = element.offset().top;
+			var elementHeight = element.outerHeight();
+			if (windowOffset + windowHeight >= elementOffset || windowHeight + windowOffset == documentHeight ||
+				elementHeight + elementOffset < windowHeight) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		//Исчезновение элемента при прокрутке
+		var fadeAway = function (element, windowScroll) {
+			element.each(function () {
+				//Изменение opacity элемента
+				if (isOnScreen($(this))) {
+					var opacity = windowScroll / $(this).offset().top.toFixed(2);
+					$(this).css("opacity", 1 - opacity);
+				} else {
+					$(this).css("opacity", 1);
+					
+				}
+			});
+		}
+		// Функция транзищн
+		var onTransition = function (element, windowScroll) {
+			// Меняем transition в зависимости от прокрутки
+			CircleTransition = element.offset().top - windowScroll - element.height() * transitionCoef;
+			if (CircleTransition > transtion) {
+				CircleTransition = transtion;
+			}
+			//При появлении элемента на экране
+			if (isOnScreen(translate)) {
+				if (CircleTransition > 0) {
+					// console.log('transition', CircleTransition)
+					$('.translateY img').css({
+						'transform': 'translateY(' + CircleTransition + 'px' + ')'
+					});
+				} else {
+					CircleTransition = 0;
+					$('.translateY img').css({
+						'transform': 'translateY(' + CircleTransition + 'px' + ')'
+					});
+				}
+			} else {
+				$('.translateY img').css({
+					'transform': 'translateY(' + transtion + 'px' + ')'
+				});
+			}
+		}
+
+		//Срабатывание функций по событию скрола
+		$(window).scroll(function () {
+			//Положение окна браузера при прокрутке
+			var windowScroll = $(window).scrollTop();
+			fadeAway(fade, windowScroll);
+			onTransition(translate, windowScroll);
+
+			// if(windowScroll + windowHeight === documentHeight) {
+			// 	$('body').css('background-color', '#3b3b3b');
+			// 	$('body').css('color', '#fafafa');
+
+			// 	console.log('alert');
+			// }
+			if(isOnScreen(skills)) {
+				setTimeout(() => {
+					$('.skills__item--html .skills__bar').addClass('skills__bar--html');
+					$('.skills__item--css3 .skills__bar').addClass('skills__bar--css3');
+					$('.skills__item--js .skills__bar').addClass('skills__bar--js');	
+				}, 1500);
+				setTimeout(() => {
+					$('.skills__additional').addClass('skills__additional--fade ');
+				}, 1800);
+			}
+
+		});
+	</script>
+	<script type="text/javascript">
+		// Открытие и закрытие меню на мобильной версии
+		$('.hamburger-menu').on('click', function () {
+			$('.main-nav').toggleClass('open');
+			$('.hamburger').toggleClass('active');
+		})
+
+		var scroll = $('.photo').offset().top;
+		$('.arrow').on('click', function(){
+			$("html, body").animate({ scrollTop: scroll }, 2000);
+			console.log('click', scroll);
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,417 @@
+body {
+    font-family: Helvetica, sans-serif;
+    background-color: #ffffff;
+
+    transition: 0.4s ease;
+    color: #3b3b3b;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    width: 100%;
+}
+
+.page {
+   
+}
+.fade,
+.no-fade {
+    width: 100%;
+
+    text-align: center;
+    font-size: 80px;
+    line-height: 80px;
+    font-weight: 100;
+    color: inherit;
+
+    transition: 0.3s linear;
+}
+
+.no-fade {
+    height: auto;
+}
+
+.page__full {
+    height: 100vh;
+    margin-top: 80vh;
+   
+    background-image: url('../images/comp1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+
+    
+    animation-fill-mode: forwards;
+
+    transition: 0.6s linear;
+  
+}
+
+.page__title {
+    color: inherit;
+    font-weight: 300;
+    margin: 0;
+
+    transition: 0.6s ease;
+}
+
+.page__title--hero {
+    
+    padding-top: 1em;
+    padding-bottom: 1em;
+   
+    text-align: right;
+    animation: fade 1.6s ease-in-out;
+}
+
+.circle {
+    width: 250px;
+    height: 250px;
+
+    margin: 75px auto 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f8f8f8;
+    position: relative;
+    background-color: #f2f2f2;
+}
+
+.page__top {
+    position: fixed;
+    top: 50%;
+    
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hamburger-menu {
+    padding: 10px;
+    cursor: pointer;
+
+    transition: 0.6s ease;
+}
+
+.hamburger {
+    position: relative;
+
+    display: block;
+    margin-right: 1em;
+    width: 25px;
+    height: 2px;
+
+    background-color: #474747;
+
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all.3s ease-in-out;
+}
+
+.hamburger::before {
+    content: '';
+    position: absolute;
+    bottom: 7px;
+
+    width: 25px;
+    height: 2px;
+
+    background-color: #474747;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all.3s ease-in-out;
+}
+
+.hamburger::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: 0;
+
+    width: 13px;
+    height: 2px;
+
+    background-color: #474747;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all.3s ease-in-out;
+}
+
+.hamburger-menu:hover .hamburger::after {
+    width: 25px;
+}
+
+.hamburger.active {
+    background-color: transparent;
+}
+
+.hamburger.active::before {
+    transform: translateY(7px) rotate(45deg);
+
+}
+
+.hamburger.active::after {
+    width: 25px;
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.photo {
+    /* margin-top: 5em; */
+    margin-bottom: 1em;
+}
+.photo__title {
+    padding-top: 1.5em;
+    font-size: 80px;
+    line-height: 80px;
+    font-weight: 100;
+}
+.skills {
+    display: flex;
+    flex-direction: column;
+
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 15em;
+}
+
+.skills__item {
+    display: flex;
+    
+    margin-bottom: 3em;
+    margin-left: 1.5em;
+
+    background-color: #f2f2f2;
+}
+
+.skills__title {
+    position: relative;
+    
+    margin: 1em;
+    width: 300px;
+
+    font-size: 45px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.skills__title::after {
+    position: absolute;
+    content: 'skills';
+    top: 0;
+    right: 0px;
+    bottom: 0;
+    
+    width: 120px;
+
+    background-color: #f2f2f2;
+
+    transition: 0.8s ease;
+}
+
+.skills__title:hover::after {
+    
+    width: 200px;
+    background-color: #778899;
+    color: #f2f2f2;
+}
+
+.skills__bar {
+    position: relative;
+
+    margin-left: 1.5em;
+    width: 0%;
+
+    opacity: 0.9;
+    background-color: #778899;
+    transition: background-color 0.6s ease, width 1.8s linear;
+}
+
+.skills__bar:hover {
+    opacity: 1;
+}
+
+.skills__bar--html {
+   
+    width: 90%;
+}
+
+.skills__bar:before {
+    position: absolute;
+    content: '';
+
+    right: -15px;
+    top: 15px;
+    color: #ffffff;
+
+    transition: 0.4s ease;
+}
+
+.skills__bar--html:hover {
+    background-color: tomato;
+}
+
+.skills__bar--html:hover::before {
+    content: '90%';
+    right: 0px;
+}
+
+.skills__bar--css3 {
+    width: 75%;
+}
+
+.skills__bar--css3:hover {
+    background-color: #87CEFA;
+}
+
+.skills__bar--css3:hover::before {
+    content: '75%';
+    right: 0px;
+}
+
+.skills__bar--js {
+    width: 40%;
+}
+
+.skills__bar--js:hover {
+    background-color: #fffe71;
+}
+
+.skills__bar--js:hover::before {
+    content: '40%';
+    color: #778899;
+    right: 0px;
+}
+
+.skills__additional {
+    display: flex;
+    justify-content: center; 
+
+    opacity: 0;
+}
+
+.skills__additional--fade {
+    animation: fade 1.2s linear forwards;
+}
+
+.skills__additional > .icon {
+    margin: 0;
+    margin-right: 1em;
+}
+.icon {
+    font-size: 46px;
+    color: #474747;
+
+    transition: 0.4s ease;
+    margin-left: -1.5em;
+}
+
+.icon:hover {
+    color:tomato;
+}
+
+.icon-css3:hover {
+   color: #00BFFF; 
+}
+
+.icon.icon-javascript:hover {
+   color: #fffe71;
+}
+
+.icon.icon-sass:hover {
+    color: #EE82EE;
+}
+
+.icon.icon-query:hover {
+    color: #00008B;
+}
+
+.icon.icon-gulp::before {
+    color: #474747;
+}
+
+.icon.icon-gulp:hover::before {
+    color: #DC143C;
+}
+
+.arrow {
+    position: relative;
+    display: block;
+    bottom: 10%;
+    left: 50%;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+    
+    animation: arrow 2s infinite linear forwards;
+}
+
+
+
+.arrow:before {
+    position: absolute;
+    content: '';
+    
+    top: 30px;
+    left: 0px;
+
+    width: 30px;
+    height: 3px;
+
+    transform: rotate(45deg);
+
+    background-color: #3b3b3b;
+}
+
+.arrow:after {
+    position: absolute;
+    content: '';
+    top: 30px;
+    left: 20px;
+
+    width: 30px;
+    height: 3px;
+
+    transform: rotate(-45deg);
+
+    background-color: #3b3b3b;
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes background {
+    0% {
+        background-position: bottom;
+    }
+
+    100% {
+        background-position: top;
+    }  
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 0.3;
+        transform: translateY(-5px);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0.3;
+        transform: translateY(-5px);
+    }
+}
